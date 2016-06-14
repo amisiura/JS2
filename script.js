@@ -1,237 +1,140 @@
 
 /*
  1 задание
+ Используя конструкцию if..else, напишите код, который будет спрашивать: 'Какой сейчас месяц?'.
 
- Натуральное число, большее 1, называется простым, если оно ни на что не делится, кроме себя и 1.
-
- Другими словами, n>1 – простое, если при делении на любое число от 2 до n-1 есть остаток.
-
- Создайте код, который выводит все простые числа из интервала от 2 до 10. Результат должен быть: 2,3,5,7.
-
- P.S. Код также должен легко модифицироваться для любых других интервалов.
+ Если посетитель вводит 'сентябрь', то выводить 'Вы правы!', если что-то другое — выводить 'Та ну ты что? сентябрь!'.
  */
-
-outer:for (var i = 2; i < 20; i++) {
-    for (var j=2;j<i;j++){
-        if (i % j == 0) continue outer;
-    }
-    console.log(i);
+var month = prompt("Какой сичас месятс?")
+if (month=="Сентябрь"||month=="сентябрь"){
+    alert("Вы правы")
 }
-
+else if (month=="September"||month=="september"){
+    alert("You're goddamn right!")
+}
+else {
+    alert("Та ну ты что? Сентябрь!")
+}
 
 
 /*
  2 задание
-
- В объекте есть свойство className, которое содержит список «классов» – слов, разделенных пробелом:
-
- var obj = {
- className: 'open menu'
- }
- Создайте функцию addClass(obj, cls), которая добавляет в список класс cls, но только если его там еще нет:
-
- addClass(obj, 'new'); // obj.className='open menu new'
- addClass(obj, 'open'); // без изменений (класс уже существует)
- addClass(obj, 'me'); // obj.className='open menu new me'
-
- alert( obj.className ); // "open menu new me"
- P.S. Ваша функция не должна добавлять лишних пробелов.*/
+ Используя конструкцию if..else, напишите код, который будет спрашивать у пользователя:
+ 'Введите любое целое число?' Верните значение которое введет пользователь,
+ затем выведите в alert:
+ 1, если значение больше нуля,
+ -1, если значение меньше нуля,
+ 0, если значение равно нулю. */
 
 
+var a = prompt('Введите любое целое число?');
 
-var obj = {
-    className: 'open menu'
-}
-var clsOld = obj.className.split(' ');
-//var clsOld = obj.className;
-
-function addClass(obj, cls){
-    var cls = prompt("Enter new value");
-
-    if(clsOld.indexOf(cls)>(-1)){
-        alert("Такое значение уже есть");
+function wholenum(a) {
+    confirm(`Вы ввели число ${a}`);
+    if (a>0)
+    {
+        alert('1');
     }
 
-    else{
-        clsOld.push(cls);
-
-        obj.className = clsOld.join(' ');
+    else if (a<0)
+    {
+        alert('-1');
+    }
+    else if (a==0)
+    {
+        alert('0');
     }
 
-    //console.log(clsOld.splice(3, 0, cls));
-    console.log(clsOld);
-
-    //var str = clsOld.join(' ');
-}
-
-addClass();
-
+};
+wholenum(a);
 
 /*
  3 задание
+ Перепишите if с использованием оператора '?':
 
- У объекта есть свойство className, которое хранит список «классов» – слов, разделенных пробелами:
+ var x = 4, y = 6;
 
- var obj = {
- className: 'open menu'
- };
- Напишите функцию removeClass(obj, cls), которая удаляет класс cls, если он есть:
-
- removeClass(obj, 'open'); // obj.className='menu'
- removeClass(obj, 'blabla'); // без изменений (нет такого класса)
- P.S. Дополнительное усложнение. Функция должна корректно обрабатывать дублирование класса в строке:
-
- obj = {
- className: 'my menu menu'
- };
- removeClass(obj, 'menu');
- alert( obj.className ); // 'my'
- Лишних пробелов после функции образовываться не должно.
+ if (x + y >= 9) {
+ result = 'Да!';
+ } else {
+ result = 'Нет!';
+ }
 */
+var x = 4, y = 6;
 
+x+y ==9 ? result = 'Да!' : result = 'Нет!';
 
-function removeClass(obj, cls){
+alert(result);
 
-    var obj = {
-        className: 'open menu'
-    }
-    var clsOld = obj.className.split(' ');
-    //var clsOld = obj.className;
-
-
-    var cls = prompt("Enter value you want to remove");
-
-    if(clsOld.indexOf(cls)>(-1)){
-        var clsNumber= clsOld.indexOf(cls);
-        var rem=clsOld.splice(clsNumber-1,1);
-    }
-
-    else{
-        alert("Not found");
-    }
-
-    obj.className = rem.join(' ');
-
-    alert(obj.className);
-
-}
-
-removeClass();
 
 /*
  4 задание
 
- Напишите код, который:
+ Напишите цикл, который предлагает prompt ввести число, большее 100.
+ Если посетитель ввел другое число — попросить ввести еще раз, и так далее.
+ Цикл должен спрашивать число пока либо посетитель не введет число, большее 100, либо не нажмет кнопку Cancel (ESC).
+ Предполагается, что посетитель вводит только числа,
+ предусматривать обработку нечисловых строк в этой задаче необязательно.
 
- Запрашивает по очереди значения при помощи prompt и сохраняет их в массиве. Заканчивает ввод, как только посетитель введёт пустую строку, не число или нажмёт «Отмена». При этом ноль 0 не должен заканчивать ввод, это разрешённое число. Выводит сумму всех значений массива когда ввод прекращен.
+ Для создание лучше использовать функции)
  */
 
-var val=prompt("Enter number");
-var check=isNaN(val);
-var sum=+val;
-var arr=[];
-arr.push(val);
-
-while(!check||!val==null)
-{
-    val=prompt("Enter number");
-
-    arr.push(val);
-    sum += +val;
-    var check=isNaN(val);
-    if (check||val===null||val=='') break;
-    console.log(sum);
-    console.log(arr);
+function moreHundred(i){
+    var i= prompt("Enter");
+    while (i<=100){
+        var i= prompt("Enter");
+    }
 }
+moreHundred();
 
 /*
  5 задание
+ Перепишите код с использованием одной конструкции switch:
 
- Напишите код который принимат от пользователя значение x (можно например через prompt) и выводит значение следующей формулы
+ var a = +prompt('a?', '');
+
+ if (a == 0) {
+ alert( 0 );
+ }
+ if (a == 1) {
+ alert( 1 );
+ }
+
+ if (a == 2 || a == 3) {
+ alert( '2,3' );
+ }
  */
 
-x=+prompt("Enter X");
+var a = +prompt('a?', '');
 
-decision=5*Math.pow(x,3)-5*x*(Math.pow(x,2)+4)
-
-alert(decision);
-
-
-/*
- 6 задание
-
- Последовательность чисел Фибоначчи вычисляется по формуле формулу F(n) = F(n-1) + F(n-2). В ней каждое следующее число вычисляется как сумма двух предыдущих. Первые два числа равны 1 и 1.
-
- Напишите функцию fib(n), которая возвращает n-е число Фибоначчи.
-
- Например:
+switch (a){
+    case 0: alert(0)
+        break
+    case 1: alert(1)
+        break
+    case 2:
+    case 3:
+        alert('2,3')
+        break
+}
 
 
- console.log(fib(3)); //2
- console.log(fib(7)); //13
- console.log(fib(77)); //5527939700884757
+ /*6 задание (на смекалку, подсказываю функция может возвращать саму себя через оператор return)
+
+ Напишите функцию pow(x,n) (не используя Math.pow), которая возвращает x в степени n. Иначе говоря, умножает x на себя n раз и возвращает результат.
+
+ Примеры: pow(3, 2) = 3 * 3 = 9 pow(1, 100) = 1 * 1 * ...* 1 = 1
  */
-
-n=prompt('Enter number of Fibonacci sequence')
-var fib= function(n){
-
-    arr=[1,1];
-
-    for(i=2;i<n;i++)
-    {
-        arr[i]=arr[i-1]+arr[i-2];
-    }
-    return arr[n-1];
-    fibN=arr[n-1];
-    console.log(fibN);
-}
-fib(n);
-
-
-/*
- 7 задание
-
- Напишите функцию, которая принимает на вход строку и возвращает ее неизменной если ее длина не превышает 20 символов. Если длинна больше 20, то обрезает строку и добавляет в конец строки '...'*/
-
-
-var strfunction = function(s) {
-    var s = prompt("Enter the string, dude");
-    if (s.length<21)
-    {
-        return s
-    }
-    else
-    {
-        s=(s.substring(0,21)+'...')
-        return s
-    }
-    alert(s);
-
-}
-strfunction();
-
-
-/*
- 8 задание
-Напиште код который выведет сотрудника который выполнил больше всех задач.
-
- Например:*/
-
-var tasksCompleted = {
-    'Anna': 29,
-    'Serg': 35,
-    'Elena': 1,
-    'Anton': 99
-};
-
-var max=0;
-var maxName='';
-for (var name in tasksCompleted)
+var pow = function(x,n)
 {
-    if (max<tasksCompleted[name])
+    a=x;
+    for (i=1; i<n; i++)
     {
-        max=tasksCompleted[name];
+        a=a*x
     }
-    max=tasksCompleted[name];
-    maxName = name;
+    return a;
+
 }
+alert(pow(2,5))
+
+
